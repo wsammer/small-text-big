@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head> 
+		<meta charset="utf-8">
+		<link href="assets/css/main.css" rel="stylesheet">
+		<link href="assets/css/pageAction.css" rel="stylesheet">
+		<title>Small Text Big</title>
+	</head>
+	<body>  
+		<div id ="wrapper">
+			<div style="display:inline;">
+				<div  style="float:left;width:46%;" class ="option" id="BL">
+					<label for ="addBL">Disable (blacklist) on this site</label>
+					<label class="container">
+						<input type="checkbox" id="addBL">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+				<div style="float:right;width:49%;margin:0;" class ="option" id="BLtemp">
+					<label for ="addBLtemp">Disable temporarily, keep settings</label>
+					<label class="container">
+						<input type="checkbox" id="addBLtemp">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			</div>
+			<div class ="sliders">
+				<div class = "sliderDiv">
+					<span class ="sliderDesc">Strength</span>
+					<div>
+							<span class = "val" id = "strLabel"></span>
+							<span class = "bgrange" style="background-image:url(assets/icons/slider.png);background-size:95% 100%;background-position:9.5px 0;">
+							<input type = "range" class = "option slider" id = "strSlider" min = "-300" max = "300" step = "1">
+							</span>
+					</div>
+				</div>
+				<div id="size-sliders">
+					<div class = "sliderDiv">
+						<span class ="sliderDesc">
+							Increase font (%)
+						</span>
+						<div>
+							<span class = "val" id = "sizeLabel"></span>
+							<span class = "bgrange" style="background-image:url(assets/icons/slider6.png);background-size:100% 100%;">
+							<input type = "range" class = "option slider" id ="sizeSlider" min = "0" max = "100" value = "0">
+							</span>
+						</div>
+					</div>
+					<div class = "sliderDiv">
+						<span class ="sliderDesc">Threshold (px)</span>
+						<div>
+							<span class = "val" id = "thresholdLabel"></span>
+							<span class = "bgrange" style="background-image:url(assets/icons/slider5.png);background-size:95.15% 100%;background-position:2.75px 0px;">
+							<input type = "range" class = "option slider" id ="thresholdSlider" min = "0" max = "50" value = "14">
+							</span>
+						</div>
+					</div>
+					<div class = "sliderDiv">
+						<span class ="sliderDesc">
+							Font Weight
+						</span>
+						<div>
+							<span class = "val" id = "weightLabel"></span>
+							<span class = "bgrange" style="background-image:url(assets/icons/slider-2.png);background-size:96.25% 100%;background-position:6px 0px;">
+							<input type = "range" class = "option slider" id ="weightSlider" min = "100" max = "900" step = "100">
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="urlContainer">
+				<div id ="url"></div>
+				<button id="refreshBtn">Refresh</button>
+			</div>
+			
+			<div id="checksContainer">
+				<div class ="separator">
+					<div class ="option" id="WL">
+						<label for ="addWL">Whitelist</label>
+						<label class="container">
+							<input type="checkbox" id="addWL">
+							<span class="checkmark"></span>
+						</label>
+					</div>  
+					<div class ="option" id="font-family">
+						<div>
+						<label for="fontFamily">Font name: </label>
+						<label class="container">
+							<input type="checkbox" id="fontFamily">
+							<span class="checkmark"></span>
+						</label>
+						</div>
+					</div>
+				</div>
+				<div class ="separator" id ="sep">
+					<div class ="option" id="pseudo-div">
+						<label for="pseudoAB">Process :before/:after elements</label>
+						<label class="container">
+							<input type="checkbox" id="pseudoAB">
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div class ="option" >
+						<input type="text" id="fontFamilyName" placeholder="Sans / Serif / Monospace" style="width:97%;height:16px;font-size:15px;line-height:18px;text-align:left;margin:0;" />
+					</div>
+				</div>
+				<div class ="separator">
+					<div class ="forces">
+						<div class ="option">
+							<label for ="underlineLinks">Underline links</label>
+							<label class="container">
+								<input type="checkbox" id="underlineLinks">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class ="option">
+							<label for="outline">Input border</label>
+							<label class="container">
+								<input type="checkbox" id="outline">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class ="option">
+							<label for="forceOpacity">Force max opacity</label>
+							<label class="container">
+								<input type="checkbox" id="forceOpacity">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class ="option">
+							<label for ="makeCaps">ALL CAPITAL TEXT</label>
+							<label class="container">
+								<input type="checkbox" id="makeCaps">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class ="option">
+							<label for="normalInc2">Colorblind adjust colors</label>
+							<label class="container">
+								<input type="checkbox" id="normalInc2">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class ="separator" id ="sep">
+					<div class ="option">
+						<label for ="skipColoreds">Avoid colorful text</label>
+						<label class="container">
+							<input type="checkbox" id="skipColoreds">
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div class ="option">
+						<label for ="skipNavSection">Skip NAV SECTION</label>
+						<label class="container">
+							<input type="checkbox" id="skipNavSection">
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div class ="option">
+						<label for ="skipHeights">Skip text height change</label>
+						<label class="container">
+							<input type="checkbox" id="skipHeights">
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div class ="option" id="skiplinks">
+						<label for ="start3">Starting 3 letters bold</label>
+						<label class="container">
+							<input type="checkbox" id="start3">
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div class ="option" id="skiplinks-div">
+						<label for ="skipLinks">Skip links in 3 letters bold</label>
+						<label class="container">
+							<input type="checkbox" id="skipLinks">
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div class ="option" id="custom-div">
+						<label for ="customCss">Apply custom CSS for site</label>
+						<label class="container">
+							<input type="checkbox" id="customCss">
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div id="custom-text-div" style="margin-top:32px;width:625px;height:auto;margin-left:-310px;display:flex;">
+						<textarea id="customCssText" cols='120' rows='20' style="width:600px;height:80px;"></textarea>
+					</div>
+				</div>
+			</div><!--checks-->
+		<div style="margin-top:12px;margin-bottom:-6px;">
+		<a href="Welcome.html" style="width:32px;" target="_blank"><img src="assets/icons/halo.png" style="width:32px;position:relative;margin-top:14px;float:left;border-radius: 4px;border:0.15em solid black;"></a>
+		<label id="LightDark" style="margin-left: 4px;margin-top: 8px;float:left;"></label>
+		<span style="text-align:center;margin-left: 2px;margin-top:14px;display:inline-block;">Preset : <select  style="width:3.5em;" id="presetSelect"><option value="0">Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>&nbsp;<input id="presetSave" type="button" value="Save"></input>&nbsp;<input id="presetLoad" type="button" value="Load"></input></span>
+		<button style="margin-top:14px;float:right;" id="optionsBtn">All Settings</button></div>
+		</div> <!--wrapper-->
+		<script src="src/pageAction_options.js"></script>
+	</body>
+</html>
