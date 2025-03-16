@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link href="assets/css/main.css" rel="stylesheet">
+		<title>Small Text Big Guide</title>
+		<style>
+			@font-face {
+				font-family: Lato;
+				src: url('assets/css/fonts/LatoLatin-Bold.woff2') format('woff2');
+				font-weight: bold;
+			}
+			@font-face {
+				font-family: Lato;
+				src: url('assets/css/fonts/LatoLatin-Regular.woff2') format('woff2');
+				font-weight: normal;
+			}
+			body{
+				font-family: Lato, sans-serif;
+				font-size: 24px;
+				background-color: white;
+				color:black;
+				margin-left: 2.35em;
+				margin-right:2.35em;
+				margin-bottom:3em;
+				line-height:1.3em;
+			}
+			#grey{
+				color: rgb(160, 160, 160);
+				color: rgb(120, 124, 126);
+			}
+			#ico {
+				width: 24px;
+				height: 24px;
+			}
+			figure,figcaption {
+				text-align: center;
+				background: radial-gradient(white,goldenrod);
+				color: #000;
+				width: 100%;
+				margin-left: 0;
+			}
+			a {
+				color: #4c9;
+			}
+			li{
+				margin-bottom: 0.7em;
+			}
+			h3{
+				margin-top:2.35em;
+				margin-bottom: 0;
+			}
+			h4{
+				margin-top:1.7em;
+				margin-bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>How to use Small Text Big</h3>
+		<p>
+			<ul>
+				<li>The <img src="assets/icons/halo.png" alt="Small Text Big" id = "ico"> button in the browser address bar manages the options for the current page. If it is not visible, you need to click on "Extensions" icon and "Pin" the Small Text Big plugin to the toolbar.</li>
+			</ul>
+		</p>
+
+<p>
+<h4>ABOUT EXTENSION</h4>
+<b>TL;DR</b><br>
+<ul>
+<li>This extension enlarges text and makes it higher contrast, so that website text is easier to read.</li>
+<li>Font size within threshold is enlarged inversely with font size. That means small text made bigger than large text. See image below:</li>
+<figure><figcaption>Text size inverse increase with font size (left side) and normal text (right side). Font Threshold is 17px.</figcaption>
+<img class="img_help" src="assets/icons/font-inverse-size.png" title="Inverse size increase" style="width:50%;" ></figure>
+<li>Text contrast can be increased by the 'Strength' slider, with high positive values making text more black / white and negative values keeping text color unchanged.<br>The strength slider also determines the Zoom %, with default zero strength giving 175% (1.75) zoom value.</li>
+<li>Font sizes can be decreased and made 'normal', by setting the '--g_smaller_text' variable to true / 1. The amount of decrease in font sizes is adjustable by 'Increase font %'.</li>
+<li>Font Weight slider changes thin/bold-ness of ALL text, and bold and normal letters weight when "Start 3 letters bold" is enabled.</li>
+<li>Zoom value and keycode of key to press can be given in custom CSS rules. as following : <br><code>html { --g_zoom: 5.0; --g_zoom_keycode: 17; }</code><br> which sets the zoom value of 500% and the 'Control' keycode (17) to press (along with Numlock enabled).</li>
+<li>Text of a page when zoomed, is spoken loud by Text-To-Speech synthesizer of browser. The speech can be paused by pressing Escape key, and resumed by again pressing Escape.</li>
+<li>'Colorblind adjust colors' when enabled changes text colors and background to suit general colorblind condition. See image below
+<figure><figcaption>Colorblind adjust option (right) changes colors towards a blue shade in light theme, green in dark theme.</figcaption>
+<img class="img_help" id="colorblind-adjust" src="assets/icons/colorblind-adjust12.png" style="width:50%;" title="Colorblind adjusting of colors (right) of different colors of text" ></figure>
+</li>
+<li>Enabling "Apply custom CSS for site" will allow you to enter custom CSS rules for the site</li>
+</ul>
+<h4>DETAILS</h4>
+<ul>
+<li>The text size is increased inversely depending on its size. This means small sized text is made much bigger than larger text, which is slightly increased in size. All text within size of Threshold setting is increased in size with text closer to Font Threshold size increasing less than text much lower size than Threshold, depending of Font Increase % setting. Text size of ANY TEXT IS NOT DECREASED to less than its normal size. Smaller text becomes as large as (or larger than) text of Threshold size. Text near the Threshold size is unchanged or changed very slightly.</li>
+<li>If "Activate on all websites" option is disabled only "whitelisted" sites are changed, else ALL sites get processed.</li>
+<li>Text contrast is increased by making grey text color black on pale background, and text color white on dark background.<br>By changing the 'Strength' slider, the contrast in text is changed, with negative values applying less contrast (-300 is no contrast, all text color is UNCHANGED) and positive values higher contrast.</li>
+<li>Disabling the 'Avoid colorful text' option makes colored text high contrast. The 'colorfulness' of text is calculated and is between range of 0 to 255.<br>The variable '--g_min_colorfulness' (default value: 41) is compared with text color to determine if text is to be made high contrast.</li>
+<li>Frames inside of site are also processed, but their settings are of the origin site of the frame, which MAY NOT be the site displayed in address box. <em>FOR SITE WITH FRAMES, the settings of the page with ADDRESS OF FRAME needs to be changed also, not just the main toplevel address page. If a page's settings are NOT WORKING, it might be that page HAS FRAMES for which the individual sites / hosts of frames need to be set.</em></li>
+<li>The "Font Weight" slider can be changed to lowest 100 (very thin) upto 900 (very thick/bold) text. This is useful for adjusting sites having very thin text or very bold and thick text. When "Start 3 letters bold" is enabled, (slider value + 400) is taken as weight of bold letters and noramal text has weight of (slider value) if slider is less than 500. For slider above 400, the slider value is taken as weight of 3 letters and all other text is normal.</li>
+<li>"Font name" option allows changing font of all text of page with the font entered in textbox. After putting font name in textbox, press Enter and the font will change immediately without requiring refresh of page.</li>
+<li>Pressing Shift key down and moving mouse over any area of page will "ZOOM" the text / image in that area  by 175% when "Num Lock" key is on. The zoom value ('--g_zoom' default value is 1.75 or 175%) and keycode ('--g_zoom_keycode' default value is 16 = Shift) can be changed by Custom / global CSS rules.</li>
+<li>Text of a page when zoomed, is spoken loud by Text-To-Speech synthesizer of browser. The spoken language is set by language of webpage. When zoom key is released / un-pressed, the audio stops. To continue speech audio even after releasing zoom key, set the new variable '--g_continue_speech' to true / 1.<br>The language of speaking can also be set by value of new variable '--g_speech_language' in custom / global CSS. For American English, the speech language is 'en-US'. To disable the reading text when zooming, set the g_speech_language variable to false/0.<br>Pressing Escape when speaking pauses the speech, and pressing Escape again resumes speech.</li>
+<li>ALL CAPITAL TEXT option makes all webpage text in capitals. It ALSO works on NON-ENGLISH languages.</li>
+<li>Starting 3 letters bold option makes all words first 3 letters <b>bold</b> and also works for NON-ENGLISH languages. If there are problems with some links or menus not working, enable "Skip links in 3 letters bold" option to avoid making links bold.<br>If the variable '--g_start3_caps' is enabled, start 3 letters are made CAPITAL and bold.<br>The --g_start3_caps variable can also be set to <b>'line; font-size:+1.2em; font-family:Serif;'</b> (quotes included)to make starting letter of every LINE bigger (+1.2em) and different font (font-family:Serif). Other option is to set to <b>'para; font-size:+1.5em; font-family:Trajan Pro; font-weight:bold;'</b>  (including quotes) which sets starting letter of every PARAGRAPH to different style (font-size: +1.5em, font: Trajan Pro, font-weight: bold).<br>Colors/other properties can also be added to the style in --g_start3_caps. Quotes are required, and can be single(') or double(") quotes, but not backquote(`).<br>One of issues in start letter mode is that numbers with decimal point, website addresses with dots or other words containing fullstop also change, while in line mode, some sentences may not get capital first letter.</li>
+<li>Force max opacity makes opacity 1.0 of text which has opacity at less than 1.0.</li>
+<li>Before a preset is made, select the preset number at the very start. Then make the customizations and finally click "Save" to save to a number between 1 to 31. This saved preset can be loaded by clicking "Load" after selecting the number of preset. Clicking "Refresh" button after all steps is recommended of knowing preset has been saved / loaded. Presets are stored in the "whitelist" list so exporting whitelist to a file will also save presets. <b>Settings with a selected preset do not get automatically updated if a preset is changed. One has to "Load" the preset again.</b></li>
+<li>The menu and large sections of webpage are increased in size according to the Font Increase % and Input elements increased by Font Threshold. If there are problems in display of menus or large tables overlap, enable "Skip NAV & SECTION" checkbox.</li>
+<li>"Skip text height changes" will not change heights of text, and INPUT elements like text and select boxes.</li>
+<li>Enabling "Apply custom CSS for site" will allow you to enter custom CSS rules for the site.</li>
+<li>The "Disable Small Text Big on this site temporarily (keep settings)" option keeps settings saved while blacklisting (making no changes) the site. If the settings on a site need to be temporarily disabled, use this option insted of "Disable Small Text Big on this site".</li>
+<li>"Colorblind adjust colors" which changes colors of text to suit colorblind condition. Colorful text RGB values are changed to blue color in light theme, and green color in dark theme.</li>
+<li>The "inverse text size" increase can be reduced to "normal size" by changing font weight after the setting "skip links" enabled and "start 3 bold" disabled.</li>
+<li>Setting (enable "Skip links" and disable "Start 3 letters") makes the Font Weight slider proportional to inverse text size calculations. 400 weight is default "inverted text size change" whose amount decreases at font weight of 300 .. 100 .. 900 .. 500 with 500 being "normal" website text with no "inverse text size change". If a site has VERY bad layout due to inverted text sizing, decrease the font weight to 100 / 900 .. 500 which will keep original font size settings. The setting is enabled by making "skip links in start 3" enabled and "start 3 letters bold"disable.</li>
+<li>Global CSS Rules are applied to all sites before Custom CSS rules of a site. Change to some particular rules that need to apply every site.</li>
+<li>Adding "#full_url" to URL in Address box will store the settings with the full URL of the page as hostname. The settings for specific pages can be changed by adding "#full_url" to the end of URL in Address box. The settings of the site are not affected by these changes. May not work on some sites where URL is controlled.</li>
+<li>Using global CSS rules or site's Custom CSS rules, the following "internal" values can be changed to modify constants.
+<ul>
+<li><b>--g_zoom : </b>Sets the value of zoom when zooming. 1.75 is default for 175% (do not specify percent, value of 1 is 'no zoom', less than one is 'zoom out', and greater than one is 'zoom in'.<br>Default value is 1.75</li>
+<li><b>--g_max_child : </b>This sets the maximum child elements a node should have to set its line height to a constant 115%.<br>Default value is 8.</li>
+<li><b>--g_zoom_keycode : </b>Sets the keycode of key to press for zooming (and Numlock has to be on).<br>Default value is 16 (Shift).</li>
+<li><b>--g_zoom_padding : </b> Sets the padding of top left bottom right areas of zoom.<br>Default value is 0% 15% 0% 15% for left and right 15% padding (works well on slashdot.org).</li>
+<li><b>--g_max_css_rules : </b> The maximum number of CSS rules allowed in a stylesheet beyond which its processing is skipped.<br>Default value is 1000.</li>
+<li><b>--g_start3_caps : </b> If enabled, makes "start 3 bold" option have CAPITAL text along with bold style.<br>Default value is false.</li>
+<li><b>--g_lightness : </b> The value of lightness to set (less than 0.5 for a dark theme and more than 0.5 for light theme page).<br>Default value is the computed page lightness.</li>
+<li><b>--g_speech_language : </b> The language of Text-To-Speech output. If not specified, it is the language specified in webpage.<br>Default value is webpage's language.</li>
+<li><b>--g_continue_speech : </b> If set to true (or not false), Text-To-Speech continues reading even after zoom key is un-pressed.<br>If disabled, TTS stops speaking after releasing zoom key.<br>Default value is false.</li>
+<li><b>--g_smaller_text : </b> Opposite of 'inverse text increase'. Text size is decreased instead of increase. Amount of decrease is adjusted by "Increase font %".<br>Default value is false.</li>
+<li><b>--g_bg_threshold : </b>Foreground contrast threshold is calculated with this value added to Strength slider value to compare with foreground brightness to decide to make text color black or white.<br>Default value is 160.</li>
+<li><b>--g_min_colorfulness : </b>Minimum colorfulness value to compare when "Avoid colorful text" is enabled.<br>Decreasing this variable will keep most colorful text unchanged. Increasing this will make less colored text into high contrast.<br> Default is 41.</li>
+<li><b>--g_site_reminder : </b>Its text string gets displayed in an alert box popup on visiting the site.<br>Example setting for custom CSS : <br><code>html { --g_site_reminder: 'Get items\n1 Bread\n2 Milk\n3 Eggs\n'; }</code><br>Newlines have to be entered as '\n'. Text should be within quotes ('' or "").</li>
+<li>Most of above variables have range between 0 to 255, but can have values outside of range. These variables allow for more 'switches', which would otherwise take up a lot of space on Settings page. They provide more customizations through a non GUI-based way.</li>
+<li>The values can be changed by applying Custom CSS for a site or setting in global CSS rules. Example CSS rule is <br><code>html { --g_zoom: 3.0; --g_zoom_keycode: 17; }</code><br>which sets the 2 internal "constants" or<br><code>a { color: #0c0; }</code><br>which changes link color to green.<br></li>
+</ul>
+<ul>
+<li>Additional features are input box borders, underlining of links and saving/loading of settings whitelists/blacklists,</li>
+<li>This extension makes website text easier to read by enlarging text and increasing contrast of text color.</li>
+<li><b>VERY IMPORTANT WARNING</b>: If you are COPY+PASTE-ing from a page which has been changed by this plugin, DISABLE the plugin for that webpage and THEN copy + paste. If you are editing or submitting HTML content online using a content management system like Wordpress or having an HTML Editor, DISABLE this extension for that particular site. Otherwise, the HTML will contain unwanted styling elements generated by the extension.</li>
+<li>WHEM PRINTING A WEBPAGE modified by this extension, KEEP "Disable for this site (keep settings)" enabled otherwise the PRINTING WON'T BE CORRECT.</li>
+</ul>
+		<h3>Options guide</h3>
+
+		<p>Clicking on the options button will open this window:</p>
+		<img src="assets/icons/options.png">
+		<ul>
+		<li><strong>Disable on this website:</strong> Adds the website to the blacklist.<strong>The contents of this site will not be changed.</strong><br>Default value: disabled</li>
+		<li><strong>Disable Small Text Big on this site temporarily (keep settings):</strong> Adds the website to the blacklist but does not delete settings of site (which can be got back by disabling this).<strong>The contents of this site will not be changed but neither will customized settings be deleted.</strong><br>Default value: disabled</li>
+		<li><strong>Strength:</strong> Adjusts the application of black/white color. This value can be adjusted to preserve website's original colors or to make it higher contrast. If it is an ODD number, INPUT text boxes color is changed to black/white for maximum contrast.<br>Also determines the zoom percentage value with zero (0) strength having 175% (1.75) zoom value.<br>Default value: 0</li>
+		<li><strong>Increase font (%) / Threshold (px):</strong> Enlarges fonts that are below the threshold (in pixels).<br>Default value: 14% / 18 px.</li>
+		<li><strong>Font Weight</strong> Changes bold setting of fonts from 100 (thinnest) to 900 (boldest) 400 is normal.<br>Default value: 400</li>
+		<li><strong>Whitelist:</strong> Adds the website to the whitelist. This site will have custom settings different from preset settings.<br>Default value: disabled</li>
+		<li><strong>Underline links:</strong> Adds an underline to links, to distinguish them from other text.<br>Default value: disabled</li>
+		<li><strong>Process :before/:after elements</strong> Changes text size in :before/:after elements. <br>Default value: disabled</li>
+		<li><strong>Input border:</strong> Adds a black outline around input elements. When enabled with "Start 3" disabled and "Skip links" enabled, prevents changes of width / height of input text elements and does not add border.<br>Default value: disabled</li>
+		<li><strong>Force max opacity:</strong> Forces full opacity on all fonts.<br>Default value: disabled</li>
+		<li><strong>Avoid colorful text:</strong>  Attempts to avoid colorful text and links, if they are considered readable.<br>Default value: enabled</li>
+		<li><strong>Skip NAV & SECTION:</strong> Avoids changing size of NAV and SECTION elements (usually menus and large tables) and height change of INPUT elements.<br>Default value: disabled</li>
+		<li><strong>Skip text height changes:</strong> Avoids changing size text whose height is less than font size and INPUT elements like text and select boxes<br>Default value: disabled.</li>
+		<li><strong>ALL CAPITALS TEXT:</strong> Makes all text in CAPITALS.<br>Default value: disabled</li>
+		<li><strong>Colorblind adjust colors:</strong> Changes text color and background to more readable color for colorblind condition.</li>
+		<li><strong>Starting 3 letters bold:</strong> Starting 3 letters of words are made bold.<br>Default value: disabled</li>
+		<li><strong>Skip links in 3 letters bold:</strong> Avoids changing links when start 3 letters bold is enabled.<br>Default value: disabled</li>
+		<li><strong>Apply custom CSS for site:</strong> Lets you enter custom CSS rules for the site.<br>Default value: disabled</li>
+		<li>The calculated website background colors are used to determine if site has "Light" theme (lightness greater than 0.5) or "Dark theme" (lightness less than 0.5).<br>On some sites this calculation may result in wrong theme choice (light website calculated as "dark" theme or reverse).</li>
+		<li><strong>All Settings</strong> Opens a tab with all the options, including the ability to activate the add-on everywhere, the global options (with in-depth tooltips), the whitelist/blacklist, and a link to this page.</li>
+		</ul>
+<h4>CAUTION AND WARNING</h4>
+<ul>
+<li><b>VERY IMPORTANT WARNING</b>: If you are COPY+PASTE-ing from a page which has been changed by this plugin, DISABLE the plugin for that webpage and THEN copy + paste. Otherwise a lot of styling changes will also get pasted which is not on the original webpage.</li>
+<li>As warned below, if you are using HTML Editors in software like Wordpress or similar, disable the plugin for that website to prevent styling changes from being entered in the HTML editor.</li>
+<li>ALSO IF YOU TAKE A PRINTOUT OF WEBPAGE changed by this extension, IT MAY NOT PRINT CORRECTLY. SO KEEP THE "Disable for this site" option ENABLED when PRINTING.</li>
+<li><b>DISABLE PLUGIN</b> = Select "Disable Small Text Big for this site" or "Disable Small Text Big on this site temporarily (keep settings)" option on Options menu or DISABLE "Activate on all websites" in All Settings page, whichever is preferred.</li>
+</ul>
+<h4>SUGGESTIONS OR ISSUES</h4>
+<ul>
+<li><em>Please excuse me, "the developer", from issues related to speed / slowness or bugs about text / background colors. I work alone on this extension and nobody tests this except me, myself and i. Also my brain isn't what it used to be when young (i'm over 50 years old) so there are no clever or ingenious algorithms in the code. Thanks for using Small Text Big and hope the extension improves your browsing experience. Sincerely, the developer.</em></li>
+</ul></p>
+		<script src="src/img.js"></script>
+	</body>
+</html>
