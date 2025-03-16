@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2023-2025 Sameer W. All rights reserved.
- * License: https://codeberg.org/sameerw/Font-Contrast-for-chrome/src/branch/main/LICENSE#
+ * License: https://github.com/wsammer/small-text-big/blob/main/LICENSE
  */
 
 let imgs = document.body.getElementsByClassName('img_help');

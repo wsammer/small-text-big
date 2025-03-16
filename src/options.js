@@ -1,3 +1,8 @@
+/**
+ * Copyright (C) 2023-2025 Sameer W. All rights reserved.
+ * License: https://github.com/wsammer/small-text-big/blob/main/LICENSE
+ */
+
 "use strict";
 
 let doc = document;
