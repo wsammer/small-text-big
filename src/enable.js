@@ -1662,7 +1662,7 @@ async function start(cfg, url)
 
 			bg_brt = calcBrightness(bg_arr);
 
-			let bg_threshold = parseInt(cfg.strength) + parseInt(g_bg_threshold);
+			let bg_threshold = cfg.strength*1 + g_bg_threshold*1;
 
 			let contrast = Math.abs(bg_brt - fg_brt);
 
