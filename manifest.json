@@ -1,7 +1,7 @@
 {
   "name": "Small Text Big",
   "description": "Makes website text larger and readable.",
-  "version": "1.3.2",
+  "version": "1.3.4",
   "author": "Sammer",
   "permissions": [
    "tabs",
