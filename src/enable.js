@@ -228,7 +228,7 @@ focalAnchors.addAnchorsToContainer = function (container, emoji, skiplinks, weig
 	while (stack.length > 0) {
 		const topElement = stack.pop();
 		Array.from(topElement.childNodes).forEach(node => {
-			if (node.nodeType === Node.TEXT_NODE && node.textContent.length > 0 && !/(SCRIPT|STYLE)/i.test(node.parentNode.nodeName) && ((skiplinks && node.parentNode.nodeName.toUpperCase() != 'UL' && node.parentNode.nodeName.toUpperCase() != 'A') || !skiplinks) && ((emoji && /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/umg.test(node.textContent)) || !emoji)) {
+			if (node.nodeType === Node.TEXT_NODE && node.textContent.length > 0 && !/(SCRIPT|STYLE)/i.test(node.parentNode.nodeName) && ((skiplinks && node.parentNode.nodeName.toUpperCase() != 'UL' && node.parentNode.nodeName.toUpperCase() != 'A') || !skiplinks)) {
 				node.parentNode.setAttribute(focalAnchors.attrNameContainer, '');
 				focalAnchors.injectAnchorText(node,weight);
 				g_s3_prev = node.nodeName;
@@ -546,10 +546,6 @@ function getCSS(cfg) {
 	let sCaps = '';
 	var brght,ctrst;
 
-	let opacity = '';
-	if (cfg.forceOpacity)
-		opacity = 'opacity:1!important;';
-
 	let boldw = cfg.weight;
 	let bold = '';
 	if (!(cfg.skipLinks && !cfg.start3))
@@ -563,8 +559,6 @@ function getCSS(cfg) {
 
 	if (cfg.makeCaps)
 		sCaps = 'font-variant-caps:small-caps!important;';
-
-	const placeholder = `::placeholder{opacity:1!important;${color_black}};`;
 
 	let form_border = '';
 	if (cfg.input_border)
@@ -635,17 +629,21 @@ function getCSS(cfg) {
 				cc2 = (cc1*(1+parseFloat(pcent)/100)).toFixed(1);
 			size_inc += `[s__='${c}']{font-size: ${cc2}px!important;`;
 			if (!cfg.skipHeights)
-				size_inc += `line-height: ${height_inc}em!important;${sCaps}${opacity}}\n`;
+				size_inc += `line-height: ${height_inc}em!important;${sCaps}}\n`;
 			else
-				size_inc += `${sCaps}${opacity}}\n`;
+				size_inc += `${sCaps}}\n`;
 			size_inc += `[h__='${c}']{line-height:115%!important;min-height: ${height_inc}em!important}`;
 			if (!cfg.skipHeights)
-				f_sizes[c] = "font-size: " + cc2 + "px!important;"+sCaps+"line-height: " + height_inc + "em!important;" + opacity;
+				f_sizes[c] = "font-size: " + cc2 + "px!important;"+sCaps+"line-height: " + height_inc + "em!important;";
 			else
-				f_sizes[c] = "font-size: " + cc2 + "px!important;"+sCaps+ opacity;
+				f_sizes[c] = "font-size: " + cc2 + "px!important;"+sCaps;
 			h_sizes[c] = `${height_inc}em`;
 			if (cc2.substr(-2,2).indexOf('.0') > -1) cc2 = parseInt(cc2);
 			f2_sizes[c] = cc2 + "px";
+			if (c > 9)
+				size_inc += "[style*='font-size: "+c+"'],[style*='font-size:"+c+"'] { "+f_sizes[c]+" }";
+			else
+				size_inc += "[style*='font-size: "+c+"px'],[style*='font-size:"+c+"px'] { "+f_sizes[c]+" }";
 		}
 	}
 	str_style2 = '1';
@@ -794,8 +792,6 @@ async function start(cfg, url)
 	let b_iimg = {};
 	let b_dim = {};
 	let m_sty = {};
-	let b_emo = {};
-	let b_noemo = true;
 	let b_idone = {};
 	let b_cdone = {};
 	let b_chk = {};
@@ -955,8 +951,7 @@ async function start(cfg, url)
 		let value = rule.style.cssText;
 		if (g_foot_re && /footer/i.test(key)) continue;
 		if (m_done[key] == undefined) m_done[key] = 0;
-		if (/(\bbody|\bhtml|\[s__)/i.test(key) && b_bdone != true && cfg.threshold > 0 && cfg.size > 0 && rule.style.fontSize) {
-			if (key.indexOf('[s__') > -1) continue;
+		if (/\b(body|html)\b/i.test(key) && b_bdone != true && cfg.threshold > 0 && cfg.size > 0 && rule.style.fontSize) {
 			var rt, rt1;
 			rt1 = rule.style.fontSize;
 			if (/var\(/i.test(rt1))
@@ -1219,7 +1214,6 @@ async function start(cfg, url)
 		b_chimg = {};
 		b_iimg = {};
 		b_dim = {};
-		b_emo = {};
 		b_idone = {};
 		images = [];
 		img_area = {};
@@ -1366,12 +1360,8 @@ async function start(cfg, url)
 
 			if (nodes_to_skip.includes(node)) return;
 
-			if (n_rulecount > 0) {
 			style = getComputedStyle(node);
 			if (style.fontSize && f2_sizes.includes(style.fontSize)) sk = true;
-			} else {
-			style = getComputedStyle(node);
-			}
 
 			node_count = map.get(node);
 
@@ -1458,8 +1448,6 @@ async function start(cfg, url)
 						node.style.setProperty('font-size',f2_sizes[nfz],'important');
 					if (!cfg.skipHeights)
 						node.style.setProperty('line-height', h_sizes[nfz],"important");
-					if (cfg.forceOpacity)
-						node.style.setProperty('opacity',str_style2,'important');
 					}
 				}
 				if (!cfg.skipHeights && b_ctext[node_count] > 0 && parseInt(style.lineHeight) <= nfz) {
@@ -1598,9 +1586,6 @@ async function start(cfg, url)
 					}
 					nsty = node.getAttribute('style');
 					if (nsty == null) nsty = '';
-					if (cfg.advDimming)
-						node.style.setProperty('filter','revert','important');
-					}
 				}
 			}
 /**
@@ -1625,10 +1610,13 @@ async function start(cfg, url)
 			if (!rgba_arr)
 				return;
 
-			if (cfg.forceOpacity && rgba_arr[3] > 0 && rgba_arr[3] < 1) {
+			if (cfg.forceOpacity)
+			if (rgba_arr[3] > 0 && rgba_arr[3] < 1) {
 				rgba_arr[3] = 1;
 				color = 'rgba('+rgba_arr+')';
 				node.style.setProperty('color',color,'important');
+			} else if (parseFloat(style.opacity) > 0) {
+				node.style.setProperty('opacity','1','important');
 			}
 
 			let bg_transp = false;
